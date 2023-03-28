@@ -1,4 +1,9 @@
 <template>
+<div class="organization">
+  <div style="display: flex; gap: 10px;">
+    <input class="search" type="text" placeholder="Pesquise sua musica">
+    <button class="btn">Search</button>
+  </div>
   <div class="songList">
     <div class="songList__wrapper">
       <template v-if="songs.length !== 0">
@@ -9,6 +14,7 @@
       </template>
     </div>
   </div>
+</div>
 </template>
 
 <script setup lang="ts">
@@ -26,9 +32,13 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
+.organization{
+  width: 50%;
+
+}
 .songList {
   gap: 1rem;
-  width: 40%;
+  width: 100%;
   height: 100%;
   display: flex;
   padding-top: 3rem;
@@ -81,5 +91,36 @@ defineProps({
     padding-right: 2rem;
     overflow: hidden auto;
   }
+}
+.search{
+  width: 80%;
+  border-radius: 5px; 
+}
+.btn, .search{
+  display: inline-block;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  color: rgba(223,190,106,0.7);
+  transition: all 0.7s ease-out;
+  padding: 18px 10px 20px;
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  margin: 0.625rem;
+  border: none;
+  border: 1px solid rgba(223,190,106,0.3);
+}
+
+.btn, .search:hover {
+  color: #fff;
+  border: 0.5px solid variables.$color-shadow-orange;
+  background-position: 99% 50%;
+}
+input:focus{
+ outline: none;
 }
 </style>
