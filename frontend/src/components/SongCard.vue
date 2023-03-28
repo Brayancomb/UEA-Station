@@ -30,7 +30,8 @@ const { playNewSong } = useHomeStore()
   cursor: pointer;
   border-radius: 20px;
   margin-bottom: 2rem;
-  box-shadow: 8px 8px 14px variables.$shadow-color;
+  background-color: variables.$orange-default;
+  box-shadow: 1px 9px 37px -7px variables.$color-shadow-orange;
 
   &__thumbnail {
     width: 60px;
@@ -43,7 +44,7 @@ const { playNewSong } = useHomeStore()
     padding-left: 1rem;
     flex-direction: column;
     justify-content: space-evenly;
-    color: variables.$primary-color-text;
+    color: variables.$color-text-alternative;
   }
 
   &__name {

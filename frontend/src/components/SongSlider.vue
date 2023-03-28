@@ -64,8 +64,8 @@ watchEffect(() => {
     transition: background 0.3s ease-in-out;
     background: linear-gradient(
       165deg,
-      variables.$primary-color,
-      variables.$secondary-color
+      variables.$color-slider-first,
+      variables.$color-slider-final
     );
     background-size: v-bind(runnable);
     background-repeat: no-repeat;

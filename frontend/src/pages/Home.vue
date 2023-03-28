@@ -17,7 +17,7 @@ const { getSongs } = storeToRefs(homeStore)
 
 <style lang="scss" scoped>
 .home {
-  width: 100%;
+  width: 100vw;
   height: 100%;
   display: flex;
   max-width: 1600px;

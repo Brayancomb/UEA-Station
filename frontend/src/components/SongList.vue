@@ -34,7 +34,43 @@ defineProps({
   padding-top: 3rem;
   padding-bottom: 3rem;
   flex-direction: column;
-  background-color: variables.$background-color;
+  /* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #FF784E #DFE9EB;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+  width: 10px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #DFE9EB;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #FF784E;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #FB5900;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #ae3d00;
+}
+
 
   @media screen and (max-width: 1200px) {
     display: none;

@@ -32,7 +32,15 @@ const path = `/images/${icon}.png`
   justify-content: center;
   margin-left: v-bind(marginX);
   margin-right: v-bind(marginX);
-  box-shadow: 8px 8px 14px variables.$shadow-color;
+  background: transparent;
+  color: rgba(223,190,106,0.7);
+  transition: all 0.7s ease-out;
+  background: linear-gradient(270deg, rgb(255, 120, 78), rgb(251, 89, 0), rgba(34,34,34,0), rgba(34,34,34,0));
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  margin: 0.625rem;
+  border: none;
+  border: 1px solid rgba(223,190,106,0.3);
 
   @media screen and (max-width: 1200px) {
     padding: 1rem;
@@ -49,5 +57,11 @@ const path = `/images/${icon}.png`
       height: 1rem;
     }
   }
+}
+
+.buttonPlayer:hover {
+  color: #fff;
+  border: 1px solid rgba(223,190,106,0);
+  background-position: 99% 50%;
 }
 </style>

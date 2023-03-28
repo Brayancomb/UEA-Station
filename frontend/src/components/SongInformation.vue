@@ -35,7 +35,8 @@ defineProps({
 
   &__image {
     max-width: 280px;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 1px 9px 37px -7px variables.$color-shadow-orange;
 
     @media screen and (max-width: 1200px) {
       margin-bottom: 1rem;
@@ -47,6 +48,7 @@ defineProps({
     font-weight: 600;
     text-align: center;
     margin-bottom: 0.5rem;
+    color: variables.$color-text-alternative;
 
     @media screen and (max-width: 1200px) {
       font-size: 1.5rem;
@@ -55,6 +57,7 @@ defineProps({
 
   &__artist {
     font-size: 1.5rem;
+    color: variables.$color-text-alternative;
 
     @media screen and (max-width: 1200px) {
       font-size: 1rem;
