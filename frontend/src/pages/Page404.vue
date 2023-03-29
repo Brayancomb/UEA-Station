@@ -1,9 +1,8 @@
 <template>
   <div class="page404">
-    <h1 class="page404__title">Página no encontrada</h1>
+    <h1 class="page404__title">Pagina não encontrada</h1>
     <h2 class="page404__subtitle">
-      Por favor, haz click <router-link to="/">aquí</router-link> para volver al
-      inicio.
+      Por favor, clique <router-link to="/">aqui</router-link> para voltar ao inicio.
     </h2>
     <router-link to="/">
       <img class="page404__logo" src="/images/logo.png" alt="logo" />
