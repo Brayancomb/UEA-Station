@@ -1,16 +1,24 @@
 <template>
 <div class="organization">
   <div style="display: flex; gap: 10px;">
-    <input class="search" type="text" placeholder="Pesquise sua musica">
+    <input
+      class="search"
+      type="text"
+      placeholder="Pesquise sua musica"
+      v-model="search"
+      >
     <button class="btn">Search</button>
   </div>
   <div class="songList">
     <div class="songList__wrapper">
-      <template v-if="songs.length !== 0">
-        <SongCard v-for="song of songs" :key="song.id" :song="song" />
+      <template v-if="songs_local.length !== 0 && !pesquisando">
+        <SongCard v-for="song of songs_local" :key="song.id" :song="song" />
       </template>
-      <template v-else>
+      <template v-else-if="songs_local.length">
         <SongCardSkeleton v-for="i of 6" :key="i" />
+      </template>
+      <template v-if="songs_local.length !== 0 && pesquisando">
+        <SongCard v-for="song of arrayDeeze" :key="song.id" :song="song" />
       </template>
     </div>
   </div>
@@ -25,16 +33,81 @@ import SongCardSkeleton from './SongCardSkeleton.vue'
 
 defineProps({
   songs: {
-    type: Object as PropType<Song[]>,
+    type: Array as PropType<Song[]>,
     required: true
   }
+})
+</script>
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { Song } from 'interfaces/Song'
+import adele from '../assets/json_search_adele.json'
+import eminem from '../assets/json_searc_eminem.json'
+import rihanna from '../assets/json_search_rihanna.json'
+/*
+*
+*
+* export interface Song {
+  id: string
+  artista: string
+  nombre: string
+  portada: string
+  url: string
+  order: number
+}
+*
+* */
+export default defineComponent({
+  data() {
+    return {
+      search: '',
+      pesquisando: false,
+      arrayDeeze: [] as Array<Song>,
+      adeleSongs: adele.data,
+      eminemSongs: eminem.data,
+      rihannaSongs: rihanna.data,
+      songs_local: [] as Array<Song>
+    }
+  },
+  methods: {
+    getList(){
+      let list: any[] =[];
+      list = list.concat(this.adeleSongs).concat(this.eminemSongs).concat(this.rihannaSongs)
+      list =  list.map(item => ({
+        id: item.id,
+        artista: item.artist.name,
+        nombre: item.title,
+        portada: item.album.cover_big,
+        url: item.preview,
+        order: item.rank
+      } as Song))
+      return list;
+    }
+  },
+  watch: {
+    songs(v){
+      if(v.length){
+        this.songs_local = v.concat(this.getList())
+      }
+    },
+    search(v){
+      if(v.length){
+        this.pesquisando = true;
+      } else {
+        this.pesquisando = false;
+      }
+    }
+  }
+
 })
 </script>
 
 <style lang="scss" scoped>
 .organization{
   width: 50%;
-
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .songList {
   gap: 1rem;
@@ -94,7 +167,7 @@ defineProps({
 }
 .search{
   width: 80%;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 .btn, .search{
   display: inline-block;
