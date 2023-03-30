@@ -11,10 +11,10 @@
   </div>
   <div class="songList">
     <div class="songList__wrapper">
-      <template v-if="songs_local.length !== 0 && !pesquisando">
-        <SongCard v-for="song of songs_local" :key="song.id" :song="song" />
+      <template v-if="songs_local_show.length !== 0">
+        <SongCard v-for="song of songs_local_show" :key="song.id" :song="song" />
       </template>
-      <template v-else-if="songs_local.length">
+      <template v-else-if="songs_local.length ===0">
         <SongCardSkeleton v-for="i of 6" :key="i" />
       </template>
       <template v-if="songs_local.length !== 0 && pesquisando">
@@ -66,7 +66,8 @@ export default defineComponent({
       adeleSongs: adele.data,
       eminemSongs: eminem.data,
       rihannaSongs: rihanna.data,
-      songs_local: [] as Array<Song>
+      songs_local: [] as Array<Song>,
+      songs_local_show: [] as Array<Song>,
     }
   },
   methods: {
@@ -88,13 +89,16 @@ export default defineComponent({
     songs(v){
       if(v.length){
         this.songs_local = v.concat(this.getList())
+        this.songs_local_show = this.songs_local;
       }
     },
     search(v){
       if(v.length){
         this.pesquisando = true;
+        this.songs_local_show = this.songs_local.filter(song => song.nombre.toUpperCase().includes(v.toUpperCase()));
       } else {
         this.pesquisando = false;
+        this.songs_local_show = this.songs_local;
       }
     }
   }
